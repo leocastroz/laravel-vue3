@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Forçar URLs a serem geradas com HTTPS
-        if (env('APP_ENV') !== 'local') {
-            URL::forceScheme('https');
+        if (str_contains(\Config::get('app.url'), 'https://')) {
+            \URL::forceScheme('https');
         }
 
         Vite::prefetch(concurrency: 3);
